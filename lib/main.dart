@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TECH BLOG',
       theme: ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.deepPurple,
       ),
       home: HomePage(),

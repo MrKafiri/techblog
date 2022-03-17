@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tec/widgets/bottom_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +11,14 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             buildAppbar(),
+            Expanded(
+              child: Stack(
+                children: [
+                  Center(child: CircularProgressIndicator.adaptive()),
+                  Positioned(left: 0, bottom: 0, child: BottomBar()),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -21,6 +30,16 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       width: double.infinity,
       height: 60,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white.withOpacity(0.0),
+            Colors.white.withOpacity(0.8),
+          ],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
