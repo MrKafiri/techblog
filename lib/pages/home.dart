@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tec/models/repository.dart';
 import 'package:tec/widgets/bottom_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,19 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: [
-                  Center(child: CircularProgressIndicator.adaptive()),
+                  FutureBuilder(
+                    future: Repository.fetchAll(),
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        print(snapshot.data);
+                        return Text('got');
+                      } else if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      }
+                      return const Center(
+                          child: CircularProgressIndicator.adaptive());
+                    },
+                  ),
                   Positioned(left: 0, bottom: 0, child: BottomBar()),
                 ],
               ),
