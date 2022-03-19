@@ -12,13 +12,13 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-      height: 90,
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 5),
+      height: 70,
       width: _size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.8),
+            Colors.white.withOpacity(0.6),
             Colors.white.withOpacity(0.0),
           ],
           begin: Alignment.bottomCenter,
@@ -43,9 +43,9 @@ class _BottomBarState extends State<BottomBar> {
             TextButton(
               onPressed: () {},
               child: Icon(
-                Icons.person_outline_outlined,
+                Icons.home_outlined,
                 color: Colors.white,
-                size: 35,
+                size: 30,
               ),
             ),
             TextButton(
@@ -53,15 +53,15 @@ class _BottomBarState extends State<BottomBar> {
               child: Icon(
                 Icons.create_outlined,
                 color: Colors.white,
-                size: 35,
+                size: 30,
               ),
             ),
             TextButton(
               onPressed: () {},
               child: Icon(
-                Icons.home_outlined,
+                Icons.person_outline_outlined,
                 color: Colors.white,
-                size: 35,
+                size: 30,
               ),
             ),
           ],

@@ -125,17 +125,16 @@ class ShowsList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                Icon(
+                  Icons.edit,
+                  color: Color(0xFF285fa4),
+                ),
+                SizedBox(width: 5),
                 Text(
                   title,
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.headline2,
-                ),
-                SizedBox(width: 5),
-                Icon(
-                  Icons.edit,
-                  color: Color(0xFF285fa4),
                 ),
               ],
             ),
@@ -145,7 +144,6 @@ class ShowsList extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             controller: controller,
             scrollDirection: Axis.horizontal,
-            reverse: true,
             child: Row(
               children: renderItems(),
             ),

@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            buildAppbar(),
             Expanded(
               child: Stack(
                 children: [
@@ -22,19 +21,17 @@ class HomePage extends StatelessWidget {
                     builder:
                         (context, AsyncSnapshot<List<ItemModel>> snapshot) {
                       if (snapshot.hasData) {
-                        return CustomScrollView(
-                          slivers: <Widget>[
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                (context, index) => ShowsList(
-                                  items: snapshot.data![index].results,
-                                  title: snapshot.data![index].title ?? "",
-                                  context: context,
-                                ),
-                                childCount: snapshot.data!.length,
-                              ),
-                            )
-                          ],
+                        return ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 90, top: 56),
+                          physics: BouncingScrollPhysics(),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ShowsList(
+                              items: snapshot.data![index].results,
+                              title: snapshot.data![index].title ?? "",
+                              context: context,
+                            );
+                          },
                         );
                       } else if (snapshot.hasError) {
                         return Text('${snapshot.error}');
@@ -43,6 +40,7 @@ class HomePage extends StatelessWidget {
                           child: CircularProgressIndicator.adaptive());
                     },
                   ),
+                  buildAppbar(),
                   Positioned(left: 0, bottom: 0, child: BottomBar()),
                 ],
               ),
@@ -62,7 +60,7 @@ class HomePage extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             Colors.white.withOpacity(0.0),
-            Colors.white.withOpacity(0.8),
+            Colors.white,
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -76,7 +74,7 @@ class HomePage extends StatelessWidget {
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.search),
+              child: Icon(Icons.menu),
             ),
           ),
           Image.asset('assets/images/logo.png'),
@@ -85,7 +83,7 @@ class HomePage extends StatelessWidget {
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.menu),
+              child: Icon(Icons.search),
             ),
           ),
         ],
