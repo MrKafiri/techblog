@@ -7,14 +7,12 @@ class ShowsList extends StatelessWidget {
   final String color;
   final String query;
   final String icon;
-  final bool isHeader;
   final List<Result> items;
   final BuildContext context;
 
   ShowsList({
     required this.color,
     required this.icon,
-    required this.isHeader,
     required this.query,
     required this.title,
     required this.items,
@@ -26,11 +24,9 @@ class ShowsList extends StatelessWidget {
       return GestureDetector(
         onTap: () {},
         child: Container(
-          padding: EdgeInsets.all(10),
           width: 180,
           height: 220,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 width: 155,
@@ -105,12 +101,16 @@ class ShowsList extends StatelessWidget {
               SizedBox(height: 5),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     item.title ?? "",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -127,35 +127,61 @@ class ShowsList extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  IconData(int.parse(icon), fontFamily: 'MaterialIcons'),
-                  color: Color(int.parse(color)),
+                Wrap(
+                  children: [
+                    Icon(
+                      IconData(int.parse(icon), fontFamily: 'MaterialIcons'),
+                      color: Color(
+                        int.parse(color),
+                      ),
+                      size: 20,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      title,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontFamily: 'MyFontBold',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(
+                          int.parse(color),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 5),
-                Text(
-                  title,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontFamily: 'MyFontBold',
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: Color(
-                      int.parse(color),
+                InkWell(
+                  borderRadius: BorderRadius.circular(5),
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Text(
+                      'نمایش همه >',
+                      style: TextStyle(
+                        fontFamily: 'MyFontBold',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Color(
+                          int.parse(color),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
           SizedBox(height: 10),
           SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             physics: BouncingScrollPhysics(),
             controller: controller,
             scrollDirection: Axis.horizontal,

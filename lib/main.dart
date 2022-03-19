@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headline1: TextStyle(
             fontFamily: 'MyFontMedium',
-            color: Colors.black,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
           headline2: TextStyle(
             fontFamily: 'MyFontBold',
