@@ -4,10 +4,18 @@ import 'package:tec/models/result.dart';
 class ShowsList extends StatelessWidget {
   final ScrollController controller = ScrollController();
   final String title;
+  final String color;
+  final String query;
+  final String icon;
+  final bool isHeader;
   final List<Result> items;
   final BuildContext context;
 
   ShowsList({
+    required this.color,
+    required this.icon,
+    required this.isHeader,
+    required this.query,
     required this.title,
     required this.items,
     required this.context,
@@ -61,6 +69,14 @@ class ShowsList extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Text(
+                            item.writer ?? "",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                           Wrap(
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
@@ -79,14 +95,6 @@ class ShowsList extends StatelessWidget {
                                 ),
                               ), //*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/
                             ],
-                          ),
-                          Text(
-                            item.writer ?? "",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
                           ),
                         ],
                       ),
@@ -127,14 +135,21 @@ class ShowsList extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  Icons.edit,
-                  color: Color(0xFF285fa4),
+                  IconData(int.parse(icon), fontFamily: 'MaterialIcons'),
+                  color: Color(int.parse(color)),
                 ),
                 SizedBox(width: 5),
                 Text(
                   title,
                   textAlign: TextAlign.right,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: TextStyle(
+                    fontFamily: 'MyFontBold',
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: Color(
+                      int.parse(color),
+                    ),
+                  ),
                 ),
               ],
             ),

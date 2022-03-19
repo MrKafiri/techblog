@@ -27,6 +27,11 @@ class HomePage extends StatelessWidget {
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
                             return ShowsList(
+                              isHeader: snapshot.data![index].isHeader ?? false,
+                              query: snapshot.data![index].query ?? "null",
+                              icon: snapshot.data![index].icon ?? "edit",
+                              color:
+                                  snapshot.data![index].color ?? "0xFF285fa4",
                               items: snapshot.data![index].results,
                               title: snapshot.data![index].title ?? "",
                               context: context,

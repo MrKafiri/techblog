@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
           ),
           headline2: TextStyle(
             fontFamily: 'MyFontBold',
-            color: Color(0xFF285fa4),
             fontSize: 13,
             fontWeight: FontWeight.bold,
           ),
