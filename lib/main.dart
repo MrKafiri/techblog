@@ -32,11 +32,6 @@ class MyApp extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
-          headline2: TextStyle(
-            fontFamily: 'MyFontBold',
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-          ),
         ),
         primarySwatch: Colors.deepPurple,
       ),

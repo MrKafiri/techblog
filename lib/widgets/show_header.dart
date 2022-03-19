@@ -34,9 +34,18 @@ class ShowsHeader extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         child: Hero(
                           tag: item,
-                          child: Image.network(
-                            item.imgUrl.toString(),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/image.png',
+                            placeholderFit: BoxFit.scaleDown,
+                            image: item.imgUrl.toString(),
                             fit: BoxFit.cover,
+                            imageErrorBuilder:
+                                (BuildContext, Object, StackTrace) {
+                              return Image.asset(
+                                'assets/images/loading.png',
+                                fit: BoxFit.scaleDown,
+                              );
+                            },
                           ),
                         ),
                       ),
