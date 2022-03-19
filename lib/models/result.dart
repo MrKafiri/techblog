@@ -16,7 +16,7 @@ class Result {
     content = parsedJson['content'];
     writer = parsedJson['writer'];
     tags = List.from(parsedJson['tags']).map((tag) => tag.toString()).toList();
-    imgUrl = parsedJson['imgUrl'];
+    imgUrl = parsedJson['imgUri'];
     isPodcast = parsedJson['isPodcast'] == "0" ? false : true;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tec/models/item_model.dart';
 import 'package:tec/models/repository.dart';
 import 'package:tec/widgets/bottom_bar.dart';
+import 'package:tec/widgets/show_list.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -17,10 +19,22 @@ class HomePage extends StatelessWidget {
                 children: [
                   FutureBuilder(
                     future: Repository.fetchAll(),
-                    builder: (context, AsyncSnapshot snapshot) {
+                    builder:
+                        (context, AsyncSnapshot<List<ItemModel>> snapshot) {
                       if (snapshot.hasData) {
-                        print(snapshot.data);
-                        return Text('got');
+                        return CustomScrollView(
+                          slivers: <Widget>[
+                            SliverList(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) => ShowsList(
+                                  items: snapshot.data![index].results,
+                                  title: snapshot.data![index].title ?? "",
+                                ),
+                                childCount: snapshot.data!.length,
+                              ),
+                            )
+                          ],
+                        );
                       } else if (snapshot.hasError) {
                         return Text('${snapshot.error}');
                       }
