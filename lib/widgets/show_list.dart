@@ -5,10 +5,12 @@ class ShowsList extends StatelessWidget {
   final ScrollController controller = ScrollController();
   final String title;
   final List<Result> items;
+  final BuildContext context;
 
   ShowsList({
     required this.title,
     required this.items,
+    required this.context,
   });
 
   List<Widget> renderItems() {
@@ -20,6 +22,7 @@ class ShowsList extends StatelessWidget {
           width: 180,
           height: 220,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 width: 155,
@@ -93,10 +96,15 @@ class ShowsList extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Expanded(
-                child: Text(
-                  item.title ?? "",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    item.title ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline1,
+                    textAlign: TextAlign.right,
+                  ),
                 ),
               )
             ],
@@ -114,13 +122,27 @@ class ShowsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            title,
-            textAlign: TextAlign.start,
-            style: TextStyle(color: Colors.black),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  title,
+                  textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                SizedBox(width: 5),
+                Icon(
+                  Icons.edit,
+                  color: Color(0xFF285fa4),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 10),
           SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             controller: controller,
             scrollDirection: Axis.horizontal,
             reverse: true,

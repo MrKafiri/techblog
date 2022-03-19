@@ -7,7 +7,7 @@ class TechBlogApiProvider {
     final String host = 'http://192.168.1.6/techblog/test.json';
     final response = await http.get(Uri.parse(host));
     if (response.statusCode == 200) {
-      return List.from(json.decode(response.body))
+      return List.from(json.decode(utf8.decode(response.bodyBytes)))
           .map((m) => ItemModel.fromJson(m))
           .toList();
     } else {

@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
                                 (context, index) => ShowsList(
                                   items: snapshot.data![index].results,
                                   title: snapshot.data![index].title ?? "",
+                                  context: context,
                                 ),
                                 childCount: snapshot.data!.length,
                               ),

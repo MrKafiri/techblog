@@ -158,10 +158,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Estedad
+    - family: MyFontBold
       fonts:
-        - asset: assets\fonts\Estedad-Bold.ttf
-        - asset: assets\fonts\Estedad-Regular.ttf
+        - asset: assets\fonts\IRANSansXBold.ttf
+
+    - family: MyFontMedium
+      fonts:
+        - asset: assets\fonts\IRANSansXMedium.ttf
+
+    - family: MyFontRegular
+      fonts:
+        - asset: assets\fonts\IRANSansXRegular.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
