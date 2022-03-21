@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tec/models/item_model.dart';
 import 'package:tec/models/repository.dart';
 import 'package:tec/widgets/bottom_bar.dart';
-import 'package:tec/widgets/show_header.dart';
-import 'package:tec/widgets/show_list.dart';
+import 'package:tec/widgets/show_items.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -27,21 +26,10 @@ class HomePage extends StatelessWidget {
                           physics: BouncingScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return snapshot.data![index].isHeader == false
-                                ? ShowsList(
-                                    query:
-                                        snapshot.data![index].query ?? "null",
-                                    icon: snapshot.data![index].icon ?? "edit",
-                                    color: snapshot.data![index].color ??
-                                        "0xFF285fa4",
-                                    items: snapshot.data![index].results,
-                                    title: snapshot.data![index].title ?? "",
-                                    context: context,
-                                  )
-                                : ShowsHeader(
-                                    items: snapshot.data![index].results,
-                                    context: context,
-                                  );
+                            return ShowsList(
+                              itemModel: snapshot.data![index],
+                              context: context,
+                            );
                           },
                         );
                       } else if (snapshot.hasError) {

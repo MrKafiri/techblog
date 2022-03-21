@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class TechBlogApiProvider {
   static Future<List<ItemModel>> fetchList() async {
-    final String host = 'http://192.168.1.6/techblog/test.json';
+    final String host = 'http://192.168.1.6/techblog/test2.json';
     final response = await http.get(Uri.parse(host));
     if (response.statusCode == 200) {
       return List.from(json.decode(utf8.decode(response.bodyBytes)))
