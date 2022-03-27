@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tec/models/item_model.dart';
+import 'package:tec/pages/show_article.dart';
 
 class ShowsList extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
@@ -97,105 +98,113 @@ class ShowsList extends StatelessWidget {
 
   List<Widget> renderItemsHeader() {
     return itemModel.results.map((item) {
-      return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              height: 155,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-                    width: double.infinity,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Hero(
-                        tag: item,
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/image.png',
-                          placeholderFit: BoxFit.scaleDown,
-                          image: item.imgUrl.toString(),
-                          fit: BoxFit.cover,
-                          imageErrorBuilder:
-                              (BuildContext, Object, StackTrace) {
-                            return Image.asset(
-                              'assets/images/loading.png',
-                              fit: BoxFit.scaleDown,
-                            );
-                          },
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ShowArticle(item: item)),
+          );
+        },
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                height: 155,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Hero(
+                          tag: item,
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/image.png',
+                            placeholderFit: BoxFit.scaleDown,
+                            image: item.imgUrl.toString(),
+                            fit: BoxFit.cover,
+                            imageErrorBuilder:
+                                (BuildContext, Object, StackTrace) {
+                              return Image.asset(
+                                'assets/images/loading.png',
+                                fit: BoxFit.scaleDown,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          Color(0xFF201650),
-                          Color(0xFF201650).withOpacity(0),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15),
+                      alignment: Alignment.bottomCenter,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Color(0xFF201650),
+                            Color(0xFF201650).withOpacity(0),
+                          ],
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                item.writer ?? "",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.favorite,
+                                    size: 14,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(width: 3),
+                                  Text(
+                                    '1254',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ), //*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            item.title ?? "",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headline1,
+                            textAlign: TextAlign.right,
+                          ),
                         ],
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              item.writer ?? "",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.favorite,
-                                  size: 14,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 3),
-                                Text(
-                                  '1254',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ), //*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          item.title ?? "",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headline1,
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }).toList();
@@ -276,7 +285,12 @@ class ShowsList extends StatelessWidget {
   List<Widget> renderItemsList() {
     return itemModel.results.map((item) {
       return InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ShowArticle(item: item)),
+          );
+        },
         borderRadius: BorderRadius.circular(15),
         child: Container(
           width: 165,
