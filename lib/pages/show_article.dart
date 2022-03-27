@@ -12,11 +12,15 @@ class ShowArticle extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              title: _buildAppBar(),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              titleSpacing: 0,
+              leadingWidth: 0,
               stretch: true,
-              title: Text(
-                item.title ?? "",
-                style: TextStyle(color: Colors.black),
-              ),
+              floating: true,
+              pinned: true,
+              snap: true,
               expandedHeight: 220.0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Hero(
@@ -38,11 +42,57 @@ class ShowArticle extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Column(
-                children: [Text('datdatadatadatadatadataa')],
+                children: [SizedBox(height: 1200)],
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Container _buildAppBar() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      height: 56,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        colors: [
+          Color(0xFF351244),
+          Color(0xFF351244).withOpacity(0),
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      )),
+      child: Row(
+        children: [
+          InkWell(
+            borderRadius: BorderRadius.circular(15),
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.arrow_back),
+            ),
+          ),
+          Spacer(),
+          InkWell(
+            borderRadius: BorderRadius.circular(15),
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.share_outlined),
+            ),
+          ),
+          InkWell(
+            borderRadius: BorderRadius.circular(15),
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.star_border_rounded),
+            ),
+          ),
+        ],
       ),
     );
   }
