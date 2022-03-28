@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.deepPurple,
       ),
       home: HomePage(),

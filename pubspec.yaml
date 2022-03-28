@@ -33,7 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   http: ^0.13.4
-  timeago: ^3.2.2
+  marquee: ^2.2.1
 
 dev_dependencies:
   flutter_native_splash: ^2.1.1
