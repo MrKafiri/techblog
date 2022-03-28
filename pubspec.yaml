@@ -162,15 +162,15 @@ flutter:
   fonts:
     - family: MyFontBold
       fonts:
-        - asset: assets\fonts\IRANSansXBold.ttf
+        - asset: assets\fonts\IRANYekanBold.ttf
 
     - family: MyFontMedium
       fonts:
-        - asset: assets\fonts\IRANSansXMedium.ttf
+        - asset: assets\fonts\IRANYekanMedium.ttf
 
     - family: MyFontRegular
       fonts:
-        - asset: assets\fonts\IRANSansXRegular.ttf
+        - asset: assets\fonts\IRANYekanRegular.ttf
 
   #         style: italic
   #   - family: Trajan Pro

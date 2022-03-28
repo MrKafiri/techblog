@@ -41,8 +41,12 @@ class ShowArticle extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: Column(
-                children: [SizedBox(height: 1200)],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Column(
+                  children: [_buildTitleAndWriter()],
+                ),
               ),
             )
           ],
@@ -81,19 +85,64 @@ class ShowArticle extends StatelessWidget {
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.share_outlined),
+              child: Icon(Icons.bookmark_border_outlined),
             ),
           ),
+          SizedBox(height: 5),
           InkWell(
             borderRadius: BorderRadius.circular(15),
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.star_border_rounded),
+              child: Icon(Icons.share_outlined),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildTitleAndWriter() {
+    return Column(
+      children: [
+        Text(
+          item.title.toString(),
+          style: TextStyle(
+            fontFamily: 'MyFontBold',
+            fontSize: 18,
+          ),
+        ),
+        SizedBox(height: 10),
+        Row(
+          children: [
+            CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.grey,
+              child: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(width: 10),
+            Text(
+              item.writer.toString(),
+              style: TextStyle(
+                fontFamily: 'MyFontMedium',
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(width: 10),
+            Text(
+              item.date.toString(),
+              style: TextStyle(
+                fontFamily: 'MyFontMedium',
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
